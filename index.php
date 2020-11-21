@@ -13,13 +13,13 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 	<link href="style.css" rel="stylesheet">
+	<link href="contact-style.css" rel="stylesheet">
 </head>
 <body>
 
-<!-- Navigation -->
+<!-- Navigatie -->
 <nav id="navAnker"class="navbar navbar-expand-md navbar-light bg-light sticky-top">
 <div class="container-fluid">
-	<!-- <img class="navbar-brand img-fluid img-responsive avit-logo" href="#" src="img/avitlogo.png"></img> -->
 	<h4 class="nav-logo">AvdVeen.nl</h4>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
 		<span class="navbar-toggler-icon"></span>
@@ -30,7 +30,7 @@
 				<a class="nav-link active" href="#">Home</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#aOne">Visie</a>
+				<a class="nav-link" href="#visie">Visie</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="http://www.github.com/skarjan" target="_blank">GitHub</a>
@@ -39,13 +39,13 @@
 				<a class="nav-link" href="http://resume.nxtlvlmarketing.nl/" target="_blank">CV</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#aTwo">Sociaal</a>
+				<a class="nav-link" href="#sociaal">Sociaal</a>
 			</li>
 </div>
 </div>
 </nav>
 
-<!--- Image Slider -->
+<!--- Img Slider -->
 <div id="slides" class="carousel slide" data-ride="carousel">
 	<ul class="carousel-indicators">
 		<li data-target="#slides" data-slide-to="0" class="active"></li>
@@ -89,7 +89,7 @@
 </div>
 </div>
 
-<!--- Welcome Section -->
+<!--- Welkom gedeelte -->
 <div class="container-fluid padding">
 <div class="row welcome text-center">
 	<div class="col-12">
@@ -106,7 +106,7 @@
 </div>
 </div>
 
-<!--- Three Column Section -->
+<!--- Drie kolommen -->
 <div class="container-fluid">
 <div class="row text-center padding">
 	<div class="col-xs-12 col-sm-6 col-md-4">
@@ -128,7 +128,7 @@
 <hr class="my-4">
 </div>
 
-<!--- Two Column Section -->
+<!--- Twee kollommen -->
 <div class="container-fluid padding">
 <div class="row padding">
 			<div class="col-md-12 col-lg-6">
@@ -150,7 +150,7 @@
 </div>
 </div>
 <hr class="my-4">
-<!--- Fixed background -->
+<!--- Vaste achtergrond  -->
 <figure>
 	<div class="fixed-wrap">
 		<div id="fixed">
@@ -181,7 +181,7 @@
 </div>
 </div>
 
-<!--- Meet the team -->
+<!--- Ons team -->
 <!-- <div class="container-fluid padding">
 	<div class="row welcome text-center">
 			<div class="col-12">
@@ -231,14 +231,14 @@
 </div>
 </div> -->
 
-<!--- Two Column Section -->
+<!--- 2 kolommen -->
 <div class="container-fluid padding">
 <div class="row padding">
 	<div class="col-lg-6">
 		<img src="img/bulbl.jpg" class="img-fluid">
 	</div>
 			<div class="col-md-12 col-lg-6">
-				<h2 id="visie"><span id="aOne"></span>Visie</h2>
+				<h2 id="visie"><span id="visie"></span>Visie</h2>
 				<p>Ik benader ieder probleem vanuit de wensen van de opdrachtgever.
 					Het liefst werk ik vanuit technisch hoogwaardige oplossingen.
 					Om vervolgens daarmee realistisch en pragmatisch de praktijk in te gaan
@@ -255,12 +255,67 @@
 </div>
 <hr class="my-4">
 </div>
+<!-- Contact formulier -->
 
+<div class="container-fluid contact-form">
+	<?php echo "<pre>";
+
+	if(isset($_POST['txtEmail']) && $_POST['txtEmail'] != ''){
+		// submit to form
+	    $gebruikersNaam = $_POST["txtName"];
+	    $emailInvoer = $_POST["txtEmail"];
+			$messageSubject = "Nieuw bericht!";
+	    $telefoon = $_POST['txtPhone'];
+	   	$bericht = $_POST["txtMsg"];
+
+			$to = '@gmail.com';
+			$body = "";
+
+			$body .= "Van: ".$gebruikersNaam. "\r\n";
+			$body .= "Email: ".$emailInvoer. "\r\n";
+			$body .= "Bericht: ".$bericht. "\r\n";
+
+mail($to,$messageSubject,$body);
+
+}
+	 print_r($messageSubject);
+
+echo "</pre>";
+	 ?>
+            <div class="contact-image">
+                <i class="fas fa-link"></i>
+            </div>
+            <form action="index.php" method="post">
+                <h3>Neem contact op</h3>
+               <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" name="txtName" class="form-control" placeholder="Naam *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="txtEmail" class="form-control" placeholder="Email *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="txtPhone" class="form-control" placeholder="Telefoon*" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="btnSubmit" class="btn btn-primary" value="Verstuur" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <textarea name="txtMsg" class="form-control" placeholder="Type hier je bericht*" style="width: 100%; height: 150px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+</div>
+<hr class="my-4">
 <!--- Sociaal -->
 <div class="container-fluid padding">
 <div class="row text-center padding">
 		<div class="col-12">
-			<h2><span id="aTwo"></span>Sociaal</h2>
+			<h2><span id="sociaal"></span>Sociaal</h2>
 		</div>
 		<div class="col-12 social padding">
 			<a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
