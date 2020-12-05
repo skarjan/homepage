@@ -185,7 +185,7 @@
 <!-- <div class="container-fluid padding">
 	<div class="row welcome text-center">
 			<div class="col-12">
-			<h1 class="display-4">Ons team</h1   >
+			<h1 class="display-4">Ons team</h1>
 			</div>
 
 </div> -->
@@ -258,22 +258,45 @@
 <!-- Contact formulier -->
 
 <div class="container-fluid contact-form">
+	<?php echo "<pre>";
 
+	if(isset($_POST['txtEmail']) && $_POST['txtEmail'] != ''){
+		// submit to form
+	    $gebruikersNaam = $_POST["txtName"];
+	    $emailInvoer = $_POST["txtEmail"];
+			$messageSubject = "Nieuw bericht!";
+	    $telefoon = $_POST['txtPhone'];
+	   	$bericht = $_POST["txtMsg"];
+
+			$to = '@gmail.com';
+			$body = "";
+
+			$body .= "Van: ".$gebruikersNaam. "\r\n";
+			$body .= "Email: ".$emailInvoer. "\r\n";
+			$body .= "Bericht: ".$bericht. "\r\n";
+
+mail($to,$messageSubject,$body);
+
+}
+	 print_r($messageSubject);
+
+echo "</pre>";
+	 ?>
             <div class="contact-image">
                 <i class="fas fa-link"></i>
             </div>
-            <form action="submit.php" method="post">
+            <form action="index.php" method="post">
                 <h3>Neem contact op</h3>
                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" name="vanWie" class="form-control" placeholder="Naam *" value="" />
+                            <input type="text" name="txtName" class="form-control" placeholder="Naam *" value="" />
                         </div>
                         <div class="form-group">
-                            <input type="text" name="emailInvoer" class="form-control" placeholder="Email *" value="" />
+                            <input type="text" name="txtEmail" class="form-control" placeholder="Email *" value="" />
                         </div>
                         <div class="form-group">
-                            <input type="text" name="telefoonNummer" class="form-control" placeholder="Telefoon*" value="" />
+                            <input type="text" name="txtPhone" class="form-control" placeholder="Telefoon*" value="" />
                         </div>
                         <div class="form-group">
                             <input type="submit" name="btnSubmit" class="btn btn-primary" value="Verstuur" />
@@ -281,7 +304,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <textarea name="berichtBodyFull" class="form-control" placeholder="Type hier je bericht*" style="width: 100%; height: 150px;"></textarea>
+                            <textarea name="txtMsg" class="form-control" placeholder="Type hier je bericht*" style="width: 100%; height: 150px;"></textarea>
                         </div>
                     </div>
                 </div>
