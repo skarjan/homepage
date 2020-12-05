@@ -1,9 +1,10 @@
 <?php
 // nogal wiedes
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "avdveen";
+$servername = "rdbms.strato.de";
+$username = "U4375153";
+$password = "AVHyM7MBJPJo96";
+$dbname = "DB4375153";
+$link = "http://www.avdveen.nl";
 
 // variabelen die verwijzen naar de HTML waarden
 $vanWie = $_POST['vanWie'];
@@ -26,7 +27,8 @@ $sql = "INSERT INTO berichten (vanWie, emailInvoer, telefoonNummer,
 
 if ($conn->query($sql) === TRUE)
 {
-    echo "Bedankt voor je bericht! Wij nemen zo snel mogelijk contact met u op.";
+    echo "Bedankt voor je bericht! Wij nemen zo snel mogelijk contact met u op.
+    <a href=$link>klik</a> hier om terug te gaan.";
 }
     else
 {
